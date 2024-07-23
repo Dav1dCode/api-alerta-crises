@@ -18,11 +18,10 @@ let alertas = [
     { id: 10, tipo: 'enchente', descricao: 'Alerta de enchente no bairro São Pedro', data: '2024-07-14', local: 'bairro São Pedro', gravidade: 'alta', ativo: true }
 ];
 
-
 app.use(express.json());
 
-const alertaRoutes = require('./routes/alertas');
-app.use('/alertas', alertaRoutes(alertas));
+const alertasRoutes = require('./alertas');
+app.use('/alertas', alertasRoutes(alertas));
 
 app.get('/', (req, res) => {
     res.send('Bem-vindo ao sistema de alerta de crises de Belo Horizonte');
