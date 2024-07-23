@@ -4,7 +4,7 @@
   "description": "API de alertas de crises para Belo Horizonte",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
