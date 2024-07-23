@@ -2,7 +2,7 @@
   "name": "api-alerta-crises",
   "version": "1.0.0",
   "description": "API de alertas de crises para Belo Horizonte",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
