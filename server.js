@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 let alertas = [
     { id: 1, tipo: 'enchente', descricao: 'Alerta de enchente na região central', data: '2024-07-22', local: 'região central', gravidade: 'alta', ativo: true },
@@ -17,6 +17,7 @@ let alertas = [
     { id: 9, tipo: 'tempestade', descricao: 'Tempestade severa na região norte', data: '2024-07-10', local: 'região norte', gravidade: 'alta', ativo: false },
     { id: 10, tipo: 'enchente', descricao: 'Alerta de enchente no bairro São Pedro', data: '2024-07-14', local: 'bairro São Pedro', gravidade: 'alta', ativo: true }
 ];
+
 
 app.use(express.json());
 
