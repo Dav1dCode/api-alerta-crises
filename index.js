@@ -1,5 +1,4 @@
 const express = require('express');
-
 const app = express();
 const port = 3000;
 
@@ -18,8 +17,47 @@ let alertas = [
 
 app.use(express.json());
 
-const alertasRoutes = require('./alertas');
-app.use('/alertas', alertasRoutes(alertas));
+app.get('/alertas', (req, res) => {
+    res.json(alertas);  
+});
+
+app.get('/alertas/:id', (req, res) => {
+    const alerta = alertas.find(a => a.id == req.params.id);
+    if (alerta) {
+        res.json(alerta);  
+    } else {
+        res.status(404).send('Alerta não encontrado');
+    }
+});
+
+app.post('/alertas', (req, res) => {
+    const novoAlerta = {
+        id: alertas.length + 1,
+        ...req.body
+    };
+    alertas.push(novoAlerta);
+    res.status(201).json(novoAlerta); 
+});
+
+app.put('/alertas/:id', (req, res) => {
+    const alerta = alertas.find(a => a.id == req.params.id);
+    if (alerta) {
+        Object.assign(alerta, req.body);
+        res.json(alerta);  
+    } else {
+        res.status(404).send('Alerta não encontrado');
+    }
+});
+
+app.delete('/alertas/:id', (req, res) => {
+    const index = alertas.findIndex(a => a.id == req.params.id);
+    if (index !== -1) {
+        alertas.splice(index, 1);
+        res.status(204).send();
+    } else {
+        res.status(404).send('Alerta não encontrado');
+    }
+});
 
 app.get('/', (req, res) => {
     res.send('Bem-vindo ao sistema de alerta de crises de Belo Horizonte');
